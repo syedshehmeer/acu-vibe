@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_start_screen_sliders",
+  "info": {
+    "displayName": "slider",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "tagLine": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

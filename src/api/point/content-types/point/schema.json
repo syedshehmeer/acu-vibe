@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "points",
+  "info": {
+    "singularName": "point",
+    "pluralName": "points",
+    "displayName": "Point"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "acupressure": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::acupressure.acupressure",
+      "inversedBy": "points"
+    },
+    "location": {
+      "type": "text"
+    },
+    "statement": {
+      "type": "text"
+    },
+    "outcome": {
+      "type": "string"
+    }
+  }
+}

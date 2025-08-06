@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "start_screens",
+  "info": {
+    "singularName": "start-screen",
+    "pluralName": "start-screens",
+    "displayName": "Start Screen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slider": {
+      "type": "component",
+      "component": "start-screen.slider",
+      "repeatable": true
+    }
+  }
+}

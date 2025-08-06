@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "premium_feature_screens",
+  "info": {
+    "singularName": "premium-feature-screen",
+    "pluralName": "premium-feature-screens",
+    "displayName": "Premium Feature Screen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "priceYear": {
+      "type": "decimal"
+    },
+    "priceMonth": {
+      "type": "decimal"
+    },
+    "feature": {
+      "type": "component",
+      "component": "premium.features",
+      "repeatable": true
+    }
+  }
+}
