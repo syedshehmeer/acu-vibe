@@ -453,6 +453,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -463,6 +464,73 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEmotionalToolkitEmotionalToolkit
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'emotional_toolkits';
+  info: {
+    displayName: 'Emotional Toolkit';
+    pluralName: 'emotional-toolkits';
+    singularName: 'emotional-toolkit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::emotional-toolkit.emotional-toolkit'
+    > &
+      Schema.Attribute.Private;
+    overviewFields: Schema.Attribute.Component<
+      'emotional-toolkit-screen.heading-description',
+      true
+    >;
+    points: Schema.Attribute.Relation<'oneToMany', 'api::point.point'>;
+    publishedAt: Schema.Attribute.DateTime;
+    soundFreqField: Schema.Attribute.Component<
+      'emotional-toolkit-screen.heading-description-frequency',
+      false
+    >;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
+  collectionName: 'global_settings';
+  info: {
+    displayName: 'Global Setting';
+    pluralName: 'global-settings';
+    singularName: 'global-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-setting.global-setting'
+    > &
+      Schema.Attribute.Private;
+    login_heading: Schema.Attribute.Component<'global.key-value-pair', false>;
+    login_secondary_heading: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -516,11 +584,13 @@ export interface ApiPremiumFeatureScreenPremiumFeatureScreen
     draftAndPublish: true;
   };
   attributes: {
+    backgroundImage: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     feature: Schema.Attribute.Component<'premium.features', true>;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -583,24 +653,53 @@ export interface ApiSeasonalWellnessSeasonalWellness
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    element: Schema.Attribute.String;
-    emotionalFocus: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::seasonal-wellness.seasonal-wellness'
     > &
       Schema.Attribute.Private;
+    overview: Schema.Attribute.Component<
+      'season-wellness-screen.key-value-pair',
+      true
+    >;
     points: Schema.Attribute.Relation<'oneToMany', 'api::point.point'>;
     publishedAt: Schema.Attribute.DateTime;
-    tcmView: Schema.Attribute.String;
     techniques: Schema.Attribute.Relation<
       'oneToMany',
       'api::technique.technique'
     >;
-    theme: Schema.Attribute.String;
     tips: Schema.Attribute.Relation<'oneToMany', 'api::tip.tip'>;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSliderSlider extends Struct.SingleTypeSchema {
+  collectionName: 'sliders';
+  info: {
+    displayName: 'Slider Screen';
+    pluralName: 'sliders';
+    singularName: 'slider';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::slider.slider'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slider: Schema.Attribute.Component<'start-screen.slider', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -624,6 +723,7 @@ export interface ApiSoundscapeSoundscape extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    frequency: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isPremium: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -652,17 +752,21 @@ export interface ApiStartScreenStartScreen extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    backgroundImage: Schema.Attribute.Media<'images'>;
+    buttonText: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    heading1: Schema.Attribute.String;
+    heading2: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::start-screen.start-screen'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
-    slider: Schema.Attribute.Component<'start-screen.slider', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -683,7 +787,8 @@ export interface ApiTechniqueTechnique extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Blocks;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1240,10 +1345,13 @@ declare module '@strapi/strapi' {
       'api::acupressure.acupressure': ApiAcupressureAcupressure;
       'api::booking-session-screen.booking-session-screen': ApiBookingSessionScreenBookingSessionScreen;
       'api::category.category': ApiCategoryCategory;
+      'api::emotional-toolkit.emotional-toolkit': ApiEmotionalToolkitEmotionalToolkit;
+      'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::point.point': ApiPointPoint;
       'api::premium-feature-screen.premium-feature-screen': ApiPremiumFeatureScreenPremiumFeatureScreen;
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::seasonal-wellness.seasonal-wellness': ApiSeasonalWellnessSeasonalWellness;
+      'api::slider.slider': ApiSliderSlider;
       'api::soundscape.soundscape': ApiSoundscapeSoundscape;
       'api::start-screen.start-screen': ApiStartScreenStartScreen;
       'api::technique.technique': ApiTechniqueTechnique;

@@ -11,10 +11,28 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "slider": {
-      "type": "component",
-      "component": "start-screen.slider",
-      "repeatable": true
+    "heading1": {
+      "type": "string"
+    },
+    "heading2": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

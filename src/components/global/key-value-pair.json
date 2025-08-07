@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_global_key_value_pairs",
+  "info": {
+    "displayName": "keyValuePair"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

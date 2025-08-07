@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "emotional_toolkits",
+  "info": {
+    "singularName": "emotional-toolkit",
+    "pluralName": "emotional-toolkits",
+    "displayName": "Emotional Toolkit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "overviewFields": {
+      "type": "component",
+      "component": "emotional-toolkit-screen.heading-description",
+      "repeatable": true
+    },
+    "soundFreqField": {
+      "type": "component",
+      "component": "emotional-toolkit-screen.heading-description-frequency",
+      "repeatable": false
+    },
+    "points": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::point.point"
+    }
+  }
+}

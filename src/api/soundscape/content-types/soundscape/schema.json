@@ -46,6 +46,9 @@
     "isFeatured": {
       "type": "boolean",
       "default": false
+    },
+    "frequency": {
+      "type": "string"
     }
   }
 }
