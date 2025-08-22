@@ -16,7 +16,8 @@
       "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "category": {
       "type": "relation",
@@ -41,10 +42,12 @@
     },
     "isPremium": {
       "type": "boolean",
+      "required": true,
       "default": false
     },
     "isFeatured": {
       "type": "boolean",
+      "required": true,
       "default": false
     },
     "frequency": {

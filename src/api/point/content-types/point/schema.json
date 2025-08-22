@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "image": {
       "type": "media",
@@ -23,10 +24,12 @@
       ]
     },
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "acupressure": {
       "type": "relation",
@@ -35,13 +38,16 @@
       "inversedBy": "points"
     },
     "location": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "statement": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "outcome": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -12,15 +12,35 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "points": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::point.point"
+    },
+    "protocol_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::protocol-category.protocol-category"
+    },
+    "isPremium": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "protocol_settings_heading": {
+      "type": "string",
+      "required": true
+    },
+    "protocol_settings_description": {
+      "type": "text",
+      "required": true
     }
   }
 }

@@ -1,30 +1,25 @@
 {
-  "kind": "singleType",
-  "collectionName": "start_screens",
+  "collectionName": "components_home_screen_premium_cards",
   "info": {
-    "singularName": "start-screen",
-    "pluralName": "start-screens",
-    "displayName": "Start Screen"
+    "displayName": "premiumCard",
+    "icon": "cast"
   },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
+  "options": {},
   "attributes": {
-    "heading1": {
+    "heading": {
       "type": "string"
     },
-    "heading2": {
+    "description": {
       "type": "string"
     },
-    "logo": {
+    "icon": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
         "images"
       ]
     },
-    "buttonText": {
+    "button_text": {
       "type": "string"
     },
     "backgroundImage": {
@@ -34,5 +29,6 @@
         "images"
       ]
     }
-  }
+  },
+  "config": {}
 }

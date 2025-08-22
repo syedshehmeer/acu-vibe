@@ -12,7 +12,13 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "overview": {
+      "type": "component",
+      "component": "season-wellness-screen.key-value-pair",
+      "repeatable": true
     },
     "points": {
       "type": "relation",
@@ -29,10 +35,10 @@
       "relation": "oneToMany",
       "target": "api::tip.tip"
     },
-    "overview": {
-      "type": "component",
-      "component": "season-wellness-screen.key-value-pair",
-      "repeatable": true
+    "isPremium": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   }
 }

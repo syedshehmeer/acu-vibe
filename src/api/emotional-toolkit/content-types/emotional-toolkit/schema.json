@@ -12,22 +12,23 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "overviewFields": {
+    "fields": {
       "type": "component",
       "component": "emotional-toolkit-screen.heading-description",
       "repeatable": true
-    },
-    "soundFreqField": {
-      "type": "component",
-      "component": "emotional-toolkit-screen.heading-description-frequency",
-      "repeatable": false
     },
     "points": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::point.point"
+    },
+    "isPremium": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   }
 }

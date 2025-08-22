@@ -393,46 +393,9 @@ export interface ApiAcupressureAcupressure extends Struct.CollectionTypeSchema {
       'api::acupressure.acupressure'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     points: Schema.Attribute.Relation<'oneToMany', 'api::point.point'>;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiBookingSessionScreenBookingSessionScreen
-  extends Struct.SingleTypeSchema {
-  collectionName: 'booking_session_screens';
-  info: {
-    displayName: 'Booking Session Screen';
-    pluralName: 'booking-session-screens';
-    singularName: 'booking-session-screen';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    features: Schema.Attribute.Component<
-      'booking-session-screen.features',
-      true
-    >;
-    featuresFooter: Schema.Attribute.String;
-    featuresHeading: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::booking-session-screen.booking-session-screen'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -442,7 +405,7 @@ export interface ApiBookingSessionScreenBookingSessionScreen
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'Category';
+    displayName: 'SoundscapeCategory';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -453,7 +416,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -485,23 +448,22 @@ export interface ApiEmotionalToolkitEmotionalToolkit
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    fields: Schema.Attribute.Component<
+      'emotional-toolkit-screen.heading-description',
+      true
+    >;
+    isPremium: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::emotional-toolkit.emotional-toolkit'
     > &
       Schema.Attribute.Private;
-    overviewFields: Schema.Attribute.Component<
-      'emotional-toolkit-screen.heading-description',
-      true
-    >;
     points: Schema.Attribute.Relation<'oneToMany', 'api::point.point'>;
     publishedAt: Schema.Attribute.DateTime;
-    soundFreqField: Schema.Attribute.Component<
-      'emotional-toolkit-screen.heading-description-frequency',
-      false
-    >;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -519,21 +481,181 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    acupressurePoints_heading: Schema.Attribute.String;
+    acupressurePoints_tcmMeasurements_cta_text: Schema.Attribute.String;
+    acupressurePoints_tcmMeasurements_description: Schema.Attribute.Text;
+    acupressurePoints_tcmMeasurements_heading: Schema.Attribute.String;
+    acupressurePoints_tcmMeasurements_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    auth_background_image: Schema.Attribute.Media<'images'>;
+    bookSession_button_text: Schema.Attribute.String;
+    bookSession_description_highlight: Schema.Attribute.String;
+    bookSession_description1: Schema.Attribute.Text;
+    bookSession_description2: Schema.Attribute.Text;
+    bookSession_features: Schema.Attribute.Component<
+      'booking-session-screen.features',
+      true
+    >;
+    bookSession_features_heading: Schema.Attribute.String;
+    bookSession_footer: Schema.Attribute.String;
+    bookSession_heading: Schema.Attribute.String;
+    bookSession_link: Schema.Attribute.String;
+    createAccount_heading_primary: Schema.Attribute.String;
+    createAccount_label_confirmPassword: Schema.Attribute.String;
+    createAccount_label_email: Schema.Attribute.String;
+    createAccount_label_fullName: Schema.Attribute.String;
+    createAccount_label_password: Schema.Attribute.String;
+    createAccount_label_phone: Schema.Attribute.String;
+    createAccount_placeholder_confirmPassword: Schema.Attribute.String;
+    createAccount_placeholder_email: Schema.Attribute.String;
+    createAccount_placeholder_fullName: Schema.Attribute.String;
+    createAccount_placeholder_password: Schema.Attribute.String;
+    createAccount_placeholder_phone: Schema.Attribute.String;
+    createAccount_register_button_text: Schema.Attribute.String;
+    createAccount_separator_text: Schema.Attribute.String;
+    createAccount_signInGoogle_text: Schema.Attribute.String;
+    createAccount_termsCondition_cta_text_2: Schema.Attribute.String;
+    createAccount_termsConditions_text_1: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    emotionalToolkit_acupoint_description: Schema.Attribute.Text;
+    emotionalToolkit_acupoint_heading: Schema.Attribute.String;
+    forgotPassword_back_cta_text: Schema.Attribute.String;
+    forgotPassword_heading_primary: Schema.Attribute.String;
+    forgotPassword_heading_secondary: Schema.Attribute.String;
+    forgotPassword_label_email: Schema.Attribute.String;
+    forgotPassword_placeholder_email: Schema.Attribute.String;
+    forgotPassword_sendCode_button_text: Schema.Attribute.String;
+    home_emotionalToolkit_cta_heading: Schema.Attribute.String;
+    home_emotionalToolkit_cta_icon: Schema.Attribute.Media<'images'>;
+    home_exploreNowCard_backgroundImage: Schema.Attribute.Media<'images'>;
+    home_exploreNowCard_exploreNow_cta_text: Schema.Attribute.String;
+    home_exploreNowCard_heading: Schema.Attribute.String;
+    home_exploreNowCard_image: Schema.Attribute.Media<'images'>;
+    home_greeting: Schema.Attribute.String;
+    home_seasonalWellness_cta_heading: Schema.Attribute.String;
+    home_seasonalWellness_cta_icon: Schema.Attribute.Media<'images'>;
+    home_soundscapes_section_heading: Schema.Attribute.String;
+    home_unlockPremiumCard_backgroundImage: Schema.Attribute.Media<'images'>;
+    home_unlockPremiumCard_button_text: Schema.Attribute.String;
+    home_unlockPremiumCard_description: Schema.Attribute.String;
+    home_unlockPremiumCard_heading: Schema.Attribute.String;
+    home_viewAll_cta_text: Schema.Attribute.String;
+    home_welcome_text: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::global-setting.global-setting'
     > &
       Schema.Attribute.Private;
-    login_heading: Schema.Attribute.Component<'global.key-value-pair', false>;
-    login_secondary_heading: Schema.Attribute.String;
+    login_forgotPassword_cta_text: Schema.Attribute.String;
+    login_heading_primary: Schema.Attribute.String;
+    login_heading_secondary: Schema.Attribute.String;
+    login_label_email: Schema.Attribute.String;
+    login_label_password: Schema.Attribute.String;
+    login_login_button_text: Schema.Attribute.String;
+    login_placeholder_email: Schema.Attribute.String;
+    login_placeholder_password: Schema.Attribute.String;
+    login_remember_cta_text: Schema.Attribute.String;
+    login_separator_text: Schema.Attribute.String;
+    login_signInGoogle_text: Schema.Attribute.String;
+    login_signUp_cta_text: Schema.Attribute.String;
+    login_signUp_prompt: Schema.Attribute.String;
+    login_termsConditions_text_1: Schema.Attribute.String;
+    login_termsConditions_text_3: Schema.Attribute.String;
+    login_termsConditions_text_cta_2: Schema.Attribute.String;
+    logo: Schema.Attribute.Media<'images'>;
+    newPassword_cancel_button_text: Schema.Attribute.String;
+    newPassword_heading_primary: Schema.Attribute.String;
+    newPassword_heading_secondary: Schema.Attribute.String;
+    newPassword_label_confirmPassword: Schema.Attribute.String;
+    newPassword_label_newPassword: Schema.Attribute.String;
+    newPassword_placeholder_confirmPassword: Schema.Attribute.String;
+    newPassword_placeholder_newPassword: Schema.Attribute.String;
+    newPassword_resetPassword_button_text: Schema.Attribute.String;
+    otp_back_cta_text: Schema.Attribute.String;
+    otp_enterCode_text: Schema.Attribute.String;
+    otp_heading_primary: Schema.Attribute.String;
+    otp_heading_secondary: Schema.Attribute.String;
+    otp_resend_cta_text: Schema.Attribute.String;
+    otp_resend_prompt: Schema.Attribute.String;
+    otp_verify_button_text: Schema.Attribute.String;
+    premium_features: Schema.Attribute.Component<'premium.features', true>;
+    premium_features_heading: Schema.Attribute.String;
+    premium_heading_description: Schema.Attribute.Text;
+    premium_heading_icon: Schema.Attribute.Media<'images'>;
+    premium_heading_primary: Schema.Attribute.String;
+    premium_heading_secondary: Schema.Attribute.String;
+    premium_price_currency: Schema.Attribute.String;
+    premium_priceMonth: Schema.Attribute.Decimal;
+    premium_priceYear: Schema.Attribute.Decimal;
+    premium_subscribe_button_text: Schema.Attribute.String;
+    premium_subscribeCard_background_image: Schema.Attribute.Media<'images'>;
+    premium_subscribeCard_description: Schema.Attribute.String;
+    premium_subscribeCard_heading: Schema.Attribute.String;
+    premium_subscribeNow_link: Schema.Attribute.String;
+    privacyPolicy_description: Schema.Attribute.Text;
+    privacyPolicy_heading: Schema.Attribute.String;
+    privacyPolicy_save_button_text: Schema.Attribute.String;
+    products_discoverProducts_description_primary: Schema.Attribute.Text;
+    products_discoverProducts_description_secondary: Schema.Attribute.Text;
+    products_discoverProducts_heading: Schema.Attribute.String;
+    products_discoverProducts_image: Schema.Attribute.Media<'images'>;
+    products_howToUseCard_backgroundImage: Schema.Attribute.Media<'images'>;
+    products_howToUseCard_description: Schema.Attribute.String;
+    products_howToUseCard_heading_primary: Schema.Attribute.String;
+    products_howToUseCard_heading_secondary: Schema.Attribute.String;
+    products_product: Schema.Attribute.Component<'product.products', true>;
+    products_view_button_text: Schema.Attribute.String;
+    profile_menu_email_text: Schema.Attribute.String;
+    profile_menu_privacyPolicy_text: Schema.Attribute.String;
+    profile_menu_settings_text: Schema.Attribute.String;
+    profile_menu_username_text: Schema.Attribute.String;
+    profile_profileStatus_option_basic_text: Schema.Attribute.String;
+    profile_profileStatus_option_premium_text: Schema.Attribute.String;
+    profile_profileStatus_text: Schema.Attribute.String;
+    profile_yourProfile_text: Schema.Attribute.String;
+    protocols_acupoint_heading: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    seasonalWellness_acupoint_heading: Schema.Attribute.String;
+    sidebar_nav_bookSession_text: Schema.Attribute.String;
+    sidebar_nav_logout_text: Schema.Attribute.String;
+    sidebar_nav_loved_text: Schema.Attribute.String;
+    sidebar_nav_member_since_text: Schema.Attribute.String;
+    sidebar_nav_profile_text: Schema.Attribute.String;
+    sidebar_nav_viewProducts_text: Schema.Attribute.String;
+    slider_background_image: Schema.Attribute.Media<'images'>;
+    slider_signIn_button_text: Schema.Attribute.String;
+    slider_signUp_cta_text: Schema.Attribute.String;
+    slider_signUp_prompt: Schema.Attribute.String;
+    slider_slides_image1: Schema.Attribute.Media<'images'>;
+    slider_slides_image2: Schema.Attribute.Media<'images'>;
+    slider_slides_image3: Schema.Attribute.Media<'images'>;
+    slider_slides_tagline1: Schema.Attribute.String;
+    slider_slides_tagline2: Schema.Attribute.String;
+    slider_slides_tagline3: Schema.Attribute.String;
+    slider_slides_title1: Schema.Attribute.String;
+    slider_slides_title2: Schema.Attribute.String;
+    slider_slides_title3: Schema.Attribute.String;
+    slider_termsPolicy_text: Schema.Attribute.String;
+    soundscapes_featuredTrack_heading: Schema.Attribute.String;
+    soundscapes_library_heading: Schema.Attribute.String;
+    splash_logo: Schema.Attribute.Media<'images' | 'files'>;
+    startup_background_image: Schema.Attribute.Media<'images'>;
+    startup_getStarted_button_text: Schema.Attribute.String;
+    startup_heading_primary: Schema.Attribute.String;
+    startup_heading_secondary: Schema.Attribute.String;
+    termsConditions_button_text: Schema.Attribute.String;
+    termsConditions_description: Schema.Attribute.Text;
+    termsConditions_heading: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    yourProfile_email_placeholder_text: Schema.Attribute.String;
+    yourProfile_heading: Schema.Attribute.String;
+    yourUsername_label: Schema.Attribute.String;
   };
 }
 
@@ -555,53 +677,46 @@ export interface ApiPointPoint extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    heading: Schema.Attribute.String;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::point.point'> &
       Schema.Attribute.Private;
-    location: Schema.Attribute.Text;
-    outcome: Schema.Attribute.String;
+    location: Schema.Attribute.Text & Schema.Attribute.Required;
+    outcome: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    statement: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
+    statement: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiPremiumFeatureScreenPremiumFeatureScreen
-  extends Struct.SingleTypeSchema {
-  collectionName: 'premium_feature_screens';
+export interface ApiProtocolCategoryProtocolCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'protocol_categories';
   info: {
-    displayName: 'Premium Feature Screen';
-    pluralName: 'premium-feature-screens';
-    singularName: 'premium-feature-screen';
+    displayName: 'ProtocolCategory';
+    pluralName: 'protocol-categories';
+    singularName: 'protocol-category';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    feature: Schema.Attribute.Component<'premium.features', true>;
-    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::premium-feature-screen.premium-feature-screen'
+      'api::protocol-category.protocol-category'
     > &
       Schema.Attribute.Private;
-    priceMonth: Schema.Attribute.Decimal;
-    priceYear: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    tagline: Schema.Attribute.String;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -622,7 +737,10 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    isPremium: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -630,8 +748,16 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     points: Schema.Attribute.Relation<'oneToMany', 'api::point.point'>;
+    protocol_category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::protocol-category.protocol-category'
+    >;
+    protocol_settings_description: Schema.Attribute.Text &
+      Schema.Attribute.Required;
+    protocol_settings_heading: Schema.Attribute.String &
+      Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -653,6 +779,9 @@ export interface ApiSeasonalWellnessSeasonalWellness
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    isPremium: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -670,36 +799,7 @@ export interface ApiSeasonalWellnessSeasonalWellness
       'api::technique.technique'
     >;
     tips: Schema.Attribute.Relation<'oneToMany', 'api::tip.tip'>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSliderSlider extends Struct.SingleTypeSchema {
-  collectionName: 'sliders';
-  info: {
-    displayName: 'Slider Screen';
-    pluralName: 'sliders';
-    singularName: 'slider';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::slider.slider'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    slider: Schema.Attribute.Component<'start-screen.slider', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -722,11 +822,15 @@ export interface ApiSoundscapeSoundscape extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     frequency: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    isPremium: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isFeatured: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    isPremium: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -735,38 +839,6 @@ export interface ApiSoundscapeSoundscape extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiStartScreenStartScreen extends Struct.SingleTypeSchema {
-  collectionName: 'start_screens';
-  info: {
-    displayName: 'Start Screen';
-    pluralName: 'start-screens';
-    singularName: 'start-screen';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
-    buttonText: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    heading1: Schema.Attribute.String;
-    heading2: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::start-screen.start-screen'
-    > &
-      Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images'>;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -787,8 +859,8 @@ export interface ApiTechniqueTechnique extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<'images'>;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -796,7 +868,7 @@ export interface ApiTechniqueTechnique extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -817,13 +889,13 @@ export interface ApiTipTip extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String;
-    icon: Schema.Attribute.Media<'images', true>;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tip.tip'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1343,17 +1415,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::acupressure.acupressure': ApiAcupressureAcupressure;
-      'api::booking-session-screen.booking-session-screen': ApiBookingSessionScreenBookingSessionScreen;
       'api::category.category': ApiCategoryCategory;
       'api::emotional-toolkit.emotional-toolkit': ApiEmotionalToolkitEmotionalToolkit;
       'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::point.point': ApiPointPoint;
-      'api::premium-feature-screen.premium-feature-screen': ApiPremiumFeatureScreenPremiumFeatureScreen;
+      'api::protocol-category.protocol-category': ApiProtocolCategoryProtocolCategory;
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::seasonal-wellness.seasonal-wellness': ApiSeasonalWellnessSeasonalWellness;
-      'api::slider.slider': ApiSliderSlider;
       'api::soundscape.soundscape': ApiSoundscapeSoundscape;
-      'api::start-screen.start-screen': ApiStartScreenStartScreen;
       'api::technique.technique': ApiTechniqueTechnique;
       'api::tip.tip': ApiTipTip;
       'plugin::content-releases.release': PluginContentReleasesRelease;

@@ -15,11 +15,11 @@ export interface EmotionalToolkitScreenHeadingDescription
   extends Struct.ComponentSchema {
   collectionName: 'components_emotional_toolkit_screen_heading_descriptions';
   info: {
-    displayName: 'headingDescription';
+    displayName: 'headingRMDescription';
   };
   attributes: {
-    description: Schema.Attribute.Blocks;
-    heading: Schema.Attribute.String;
+    description: Schema.Attribute.RichText;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -36,13 +36,55 @@ export interface EmotionalToolkitScreenHeadingDescriptionFrequency
   };
 }
 
-export interface GlobalKeyValuePair extends Struct.ComponentSchema {
-  collectionName: 'components_global_key_value_pairs';
+export interface EmotionalToolkitScreenHeadingTDescription
+  extends Struct.ComponentSchema {
+  collectionName: 'components_emotional_toolkit_screen_heading_t_descriptions';
   info: {
-    displayName: 'keyValuePair';
+    displayName: 'headingTDescription';
   };
   attributes: {
-    value: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+  };
+}
+
+export interface HomeScreenExploreNowCard extends Struct.ComponentSchema {
+  collectionName: 'components_home_screen_explore_now_cards';
+  info: {
+    displayName: 'exploreNowCard';
+  };
+  attributes: {
+    background_image: Schema.Attribute.Media<'images'>;
+    exploreNow_cta_text: Schema.Attribute.String;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface HomeScreenPremiumCard extends Struct.ComponentSchema {
+  collectionName: 'components_home_screen_premium_cards';
+  info: {
+    displayName: 'premiumCard';
+    icon: 'cast';
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<'images'>;
+    button_text: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    heading: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface HomeScreenSectionButton extends Struct.ComponentSchema {
+  collectionName: 'components_home_screen_section_buttons';
+  info: {
+    displayName: 'sectionButton';
+    icon: 'bulletList';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images'>;
   };
 }
 
@@ -59,6 +101,17 @@ export interface PremiumFeatures extends Struct.ComponentSchema {
   };
 }
 
+export interface ProductProducts extends Struct.ComponentSchema {
+  collectionName: 'components_product_products';
+  info: {
+    displayName: 'products';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    heading: Schema.Attribute.String;
+  };
+}
+
 export interface SeasonWellnessScreenKeyValuePair
   extends Struct.ComponentSchema {
   collectionName: 'components_season_wellness_screen_key_value_pairs';
@@ -67,8 +120,8 @@ export interface SeasonWellnessScreenKeyValuePair
     icon: 'bulletList';
   };
   attributes: {
-    description: Schema.Attribute.Text;
-    heading: Schema.Attribute.String;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -91,8 +144,12 @@ declare module '@strapi/strapi' {
       'booking-session-screen.features': BookingSessionScreenFeatures;
       'emotional-toolkit-screen.heading-description': EmotionalToolkitScreenHeadingDescription;
       'emotional-toolkit-screen.heading-description-frequency': EmotionalToolkitScreenHeadingDescriptionFrequency;
-      'global.key-value-pair': GlobalKeyValuePair;
+      'emotional-toolkit-screen.heading-t-description': EmotionalToolkitScreenHeadingTDescription;
+      'home-screen.explore-now-card': HomeScreenExploreNowCard;
+      'home-screen.premium-card': HomeScreenPremiumCard;
+      'home-screen.section-button': HomeScreenSectionButton;
       'premium.features': PremiumFeatures;
+      'product.products': ProductProducts;
       'season-wellness-screen.key-value-pair': SeasonWellnessScreenKeyValuePair;
       'start-screen.slider': StartScreenSlider;
     }
